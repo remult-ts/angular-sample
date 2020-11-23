@@ -1,4 +1,5 @@
-import { Context, DateTimeColumn, EntityClass, IdEntity, ServerFunction, StringColumn, UserInfo } from "@remult/core";
+import { BoolColumn, Context, DateTimeColumn, EntityClass, IdEntity, ServerFunction, StringColumn, UserInfo } from "@remult/core";
+import { Roles } from './roles';
 
 @EntityClass
 export class Users extends IdEntity {
@@ -8,12 +9,15 @@ export class Users extends IdEntity {
                 this.name.validationError = 'Name is too short';
         }
     });
+    isAdmin = new BoolColumn();
     createdDate = new DateTimeColumn();
-    constructor() {
+    constructor(context:Context) {
         super({
             name: 'users',
-            allowApiCRUD: true,
+            allowApiCRUD: Roles.canUpdateUsers,
+            allowApiRead: context => context.isSignedIn(),
             saving: () => {
+                console.log(context.user);
                 if (this.isNew())
                     this.createdDate.value = new Date()
             }
@@ -29,6 +33,8 @@ export class Users extends IdEntity {
             name: u.name.value,
             roles: []
         };
+        if (u.isAdmin.value)
+            user.roles.push(Roles.canUpdateUsers);
         return Users.createToken( user);
     }
     static createToken: (user: UserInfo) => string;
