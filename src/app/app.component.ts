@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Context } from '@remult/core';
+import { CookieAuthorizationService } from './common/authorization-service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,12 @@ import { Context } from '@remult/core';
 })
 export class AppComponent {
   title = 'remult-angular-sample';
-  constructor(context: Context) { }
+  constructor(public context: Context, private auth: CookieAuthorizationService,private router:Router) {
+
+  }
+  SignOut(){
+    this.auth.signOut();
+    this.router.navigateByUrl('/sign-in');
+    
+  }
 }

@@ -3,8 +3,8 @@ import { Context, DateTimeColumn, EntityClass, IdEntity, ServerFunction, StringC
 @EntityClass
 export class Users extends IdEntity {
     name = new StringColumn({
-        validate:()=>{
-            if (this.name.value.length<3)
+        validate: () => {
+            if (this.name.value.length < 3)
                 this.name.validationError = 'Name is too short';
         }
     });
@@ -29,6 +29,7 @@ export class Users extends IdEntity {
             name: u.name.value,
             roles: []
         };
-        return user;
+        return Users.createToken( user);
     }
+    static createToken: (user: UserInfo) => string;
 }

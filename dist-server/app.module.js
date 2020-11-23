@@ -11,6 +11,7 @@ var forms_1 = require("@angular/forms");
 var error_handler_1 = require("./common/error-handler");
 var add_user_component_1 = require("./add-user/add-user.component");
 var sign_in_component_1 = require("./sign-in/sign-in.component");
+var authorization_service_1 = require("./common/authorization-service");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -27,7 +28,8 @@ var AppModule = /** @class */ (function () {
                 forms_1.FormsModule,
                 app_routing_module_1.AppRoutingModule
             ],
-            providers: [{ provide: core_2.Context, useClass: core_2.Context }, { provide: core_1.ErrorHandler, useClass: error_handler_1.DisplayAlertErrorErrorHandler }],
+            providers: [{ provide: core_2.Context, useClass: core_2.Context },
+                { provide: core_1.ErrorHandler, useClass: error_handler_1.DisplayAlertErrorErrorHandler }, authorization_service_1.CookieAuthorizationService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);

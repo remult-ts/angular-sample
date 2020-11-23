@@ -10,10 +10,16 @@ var pg_1 = require("pg");
 var dotenv_1 = require("dotenv");
 var server_postgres_1 = require("@remult/server-postgres");
 require("../app.module");
+var users_1 = require("../users/users");
 dotenv_1.config(); //loads the configuration from the .env file
 initDatabase().then(function (database) {
     var app = express();
-    server_1.initExpress(app, database, process.env.DISABLE_HTTPS == "true");
+    var s = server_1.initExpress(app, database, process.env.DISABLE_HTTPS == "true");
+    var signKey = process.env.TOKEN_SIGN_KEY;
+    if (!signKey)
+        throw "Please set the TOKEN_SIGN_KEY with a secret sign key";
+    var authorization = new server_1.JWTCookieAuthorizationHelper(s, signKey);
+    users_1.Users.createToken = function (userInfo) { return authorization.createSecuredTokenBasedOn(userInfo); };
     app.use(express.static('dist'));
     app.use('/*', function (req, res) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
         var index;

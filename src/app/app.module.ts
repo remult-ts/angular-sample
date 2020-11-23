@@ -10,6 +10,8 @@ import { DisplayAlertErrorErrorHandler } from './common/error-handler';
 import { AddUserComponent } from './add-user/add-user.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
+import { CookieAuthorizationService } from './common/authorization-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [{provide:Context,useClass:Context},{provide:ErrorHandler,useClass:DisplayAlertErrorErrorHandler}], 
+  providers: [{ provide: Context, useClass: Context },
+  { provide: ErrorHandler, useClass: DisplayAlertErrorErrorHandler },CookieAuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

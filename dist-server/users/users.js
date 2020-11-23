@@ -38,7 +38,7 @@ var Users = /** @class */ (function (_super) {
                             name: u.name.value,
                             roles: []
                         };
-                        return [2 /*return*/, user];
+                        return [2 /*return*/, Users_1.createToken(user)];
                 }
             });
         });
