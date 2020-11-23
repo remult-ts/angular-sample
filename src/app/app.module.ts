@@ -11,13 +11,15 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
 import { CookieAuthorizationService } from './common/authorization-service';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     AddUserComponent,
-    SignInComponent
+    SignInComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,9 @@
   <a [routerLink]="['/add-user']">Add User</a> |
   <a [routerLink]="['/sign-in']" *ngIf="!context.isSignedIn()">Sign In</a>
   <span *ngIf="context.isSignedIn()"> Hello {{context.user.name}}</span>
+  | <a [routerLink]="['/update-password']" *ngIf="context.isSignedIn()"> 
+    Update Password
+  </a> |
   <button *ngIf="context.isSignedIn()" (click)="SignOut()">Sign Out</button>
 </nav>
 <div>
