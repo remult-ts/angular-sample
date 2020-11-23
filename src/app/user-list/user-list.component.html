@@ -1,9 +1,11 @@
 <h2>User List {{users.length}}</h2>
 <div *ngFor="let user of users">
     <input [(ngModel)]="user.name.value">
+    <input [(ngModel)]="user.isAdmin.value" type="checkbox" />
+    admin |
     <button (click)="user.save()" *ngIf="user.wasChanged()">
         Save Changes
-      </button>
+    </button>
     created on: {{user.createdDate.displayValue}}
     <button (click)="deleteUser(user)">Delete</button>
 
