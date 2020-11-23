@@ -11,13 +11,12 @@ export class Users extends IdEntity {
     });
     isAdmin = new BoolColumn();
     createdDate = new DateTimeColumn();
-    constructor(context:Context) {
+    constructor() {
         super({
             name: 'users',
             allowApiCRUD: Roles.canUpdateUsers,
             allowApiRead: context => context.isSignedIn(),
             saving: () => {
-                console.log(context.user);
                 if (this.isNew())
                     this.createdDate.value = new Date()
             }
