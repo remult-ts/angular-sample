@@ -1,18 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { Context } from '@remult/core';
+import { UserListComponent } from './user-list/user-list.component';
+import { FormsModule } from '@angular/forms';
+import { DisplayAlertErrorErrorHandler } from './common/error-handler';
+import { AddUserComponent } from './add-user/add-user.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserListComponent,
+    AddUserComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{provide:Context,useClass:Context},{provide:ErrorHandler,useClass:DisplayAlertErrorErrorHandler}], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

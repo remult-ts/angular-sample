@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "node-serve": "./node_modules/.bin/tsc-watch -p tsconfig.server.json --onSuccess \"node dist-server/server/server.js"
   },
   "private": true,
   "dependencies": {
@@ -19,7 +20,18 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@remult/core": "^2.0.8",
+    "@remult/server": "^2.0.8",
+    "@remult/server-postgres": "^2.0.8",
+    "@types/pg": "^7.14.6",
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-force-https": "^1.0.0",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~6.4.0",
+    "tsc-watch": "^4.2.9",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

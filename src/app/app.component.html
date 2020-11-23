@@ -1,5 +1,9 @@
-<h1>Remult with Vue</h1>
-<nav></nav>
+<h1>Remult with Angular</h1>
+<nav>
+  <a [routerLink]="['/users']">User List</a> |
+  <a [routerLink]="['/add-user']">Add User</a> |
+  <a [routerLink]="['/sign-in']">Sign In</a> 
+</nav>
 <div>
   <router-outlet></router-outlet>
 </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Context } from '@remult/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'remult-angular-sample';
+  constructor(context: Context) { }
 }
